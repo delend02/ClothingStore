@@ -1,4 +1,4 @@
-namespace СlothingStore
+namespace СlothingStore.API
 {
     public class Program
     {

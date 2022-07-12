@@ -2,6 +2,12 @@
 {
     public class UserRepository : IUserRepository
     {
+        private readonly string connectionDB;
+        public UserRepository(string connectionString)
+        {
+            connectionDB = connectionString ?? throw new ArgumentNullException(nameof(connectionString)); ;
+        }
+
         public Task<User> Create(User user)
         {
             throw new NotImplementedException();
@@ -12,7 +18,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
             throw new NotImplementedException();
         }

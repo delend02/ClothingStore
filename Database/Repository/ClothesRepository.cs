@@ -2,6 +2,14 @@
 {
     public class ClothesRepository : IClothesRepository
     {
+        private readonly string connectionDB;
+
+        public ClothesRepository(string connectionString)
+        {
+            connectionDB = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+
+
         public Task<Clothes> Create(Clothes clothes)
         {
             throw new NotImplementedException();

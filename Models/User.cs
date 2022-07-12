@@ -2,14 +2,14 @@
 {
     public class User
     {
-        public long ID { get; set; }
+        public ulong ID { get; set; }
         public string Nickmame { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public decimal Cash { get; set; }
         public Accessibility Status { get; set; }
 
-        public User(long Id , string nickmame, string login, string password, decimal cash, Accessibility status)
+        public User(ulong Id , string nickmame, string login, string password, decimal cash, Accessibility status)
         {
             ID = Id;
             Nickmame = nickmame;

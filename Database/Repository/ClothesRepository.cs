@@ -1,8 +1,8 @@
-﻿namespace СlothingStore.Database.Repository
+﻿namespace СlothingStore.API.Database.Repository
 {
-    public class ClothesRepository : IRepository<Clothes>
+    public class ClothesRepository : IClothesRepository
     {
-        public Task<Clothes> Create(Clothes entity)
+        public Task<Clothes> Create(Clothes clothes)
         {
             throw new NotImplementedException();
         }
@@ -22,7 +22,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<Clothes> Update(Clothes entity)
+        public Task<Clothes> Update(Clothes clothes)
         {
             throw new NotImplementedException();
         }

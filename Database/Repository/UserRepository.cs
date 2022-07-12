@@ -1,8 +1,8 @@
-﻿namespace СlothingStore.Database.Repository
+﻿namespace СlothingStore.API.Database.Repository
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
-        public Task<User> Create(User entity)
+        public Task<User> Create(User user)
         {
             throw new NotImplementedException();
         }
@@ -22,7 +22,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<User> Update(User entity)
+        public Task<User> Update(User user)
         {
             throw new NotImplementedException();
         }

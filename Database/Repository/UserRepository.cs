@@ -18,9 +18,13 @@
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<UserDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            using IDbConnection connection = new NpgsqlConnection(connectionDB);
+            var sqlQuery = "SELECT id, nickname, login, password," +
+                "cash FROM users";
+            var result = await connection.QueryAsync<UserDTO>(sqlQuery);
+            return result;
         }
 
         public Task<User> GetByID(long id)

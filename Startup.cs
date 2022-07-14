@@ -20,6 +20,7 @@ namespace СlothingStore.API
 
             services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionString));
             services.AddTransient<IClothesRepository, ClothesRepository>(provider => new ClothesRepository(connectionString));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

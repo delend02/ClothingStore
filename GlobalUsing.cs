@@ -14,7 +14,4 @@ global using СlothingStore.API.Database.Repository;
 global using Npgsql;
 global using System.Data;
 global using Dapper;
-
-
-
-
+global using СlothingStore.API.Models.DTO;

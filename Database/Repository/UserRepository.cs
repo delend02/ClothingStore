@@ -1,4 +1,9 @@
-﻿namespace СlothingStore.API.Database.Repository
+﻿using Dapper;
+using Npgsql;
+using System.Data;
+using СlothingStore.API.Models.DTO;
+
+namespace СlothingStore.API.Database.Repository
 {
     public class UserRepository : IUserRepository
     {
@@ -8,31 +13,50 @@
             connectionDB = connectionString ?? throw new ArgumentNullException(nameof(connectionString)); ;
         }
 
-        public Task<User> Create(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<UserDTO>> GetAll()
+        public async Task Create(UserDTO user)
         {
             using IDbConnection connection = new NpgsqlConnection(connectionDB);
-            var sqlQuery = "SELECT id, nickname, login, password," +
-                "cash FROM users";
-            var result = await connection.QueryAsync<UserDTO>(sqlQuery);
+            var sqlQuery = @"INSERT INTO public.users(
+                            nickname, login, password, status)
+	                        VALUES('@Nickname', '@Login', '@Password', '0');";
+            await connection.ExecuteAsync(sqlQuery,
+                new { user.Nickname,
+                      user.Login,
+                      user.Password });
+        }
+
+        public Task Delete(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<UsersInfoDTO>> GetAll()
+        {
+            using IDbConnection connection = new NpgsqlConnection(connectionDB);
+            var sqlQuery = @"SELECT 
+                           id,
+                           nickname,
+                           login,
+                           cash FROM users";
+            var result = await connection.QueryAsync<UsersInfoDTO>(sqlQuery);
             return result;
         }
 
-        public Task<User> GetByID(long id)
+        public async Task<UsersInfoDTO> GetByID(long id)
         {
-            throw new NotImplementedException();
+            using IDbConnection connection = new NpgsqlConnection(connectionDB);
+            var sqlQuery = @"SELECT
+                           id,
+                           nickname,
+                           login,
+                           cash FROM users
+                           WHERE id = @id";
+            var result = await connection.QuerySingleOrDefaultAsync<UsersInfoDTO>(sqlQuery,
+                                                                                  new { id });
+            return result;
         }
 
-        public Task<User> Update(User user)
+        public Task Update(UserDTO user)
         {
             throw new NotImplementedException();
         }

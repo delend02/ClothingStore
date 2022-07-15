@@ -1,4 +1,6 @@
-﻿namespace СlothingStore.API.Database.Repository
+﻿using СlothingStore.API.Models;
+
+namespace СlothingStore.API.Database.Repository
 {
     public interface IClothesRepository
     {

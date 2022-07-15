@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using СlothingStore.API.Database.Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,5 +22,10 @@ namespace СlothingStore.API.Controllers
             return Ok(await UserRepository.GetAll());
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] long id)
+        {
+            return Ok(await UserRepository.GetByID(id));
+        }
     }
 }

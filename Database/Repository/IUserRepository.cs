@@ -1,12 +1,13 @@
-﻿
+﻿using СlothingStore.API.Models.DTO;
+
 namespace СlothingStore.API.Database.Repository
 {
     public interface IUserRepository
     {
-        Task<User> Create(User user);
-        Task<User> GetByID(long id);
-        Task<IEnumerable<UserDTO>> GetAll();
-        Task<User> Update(User user);
-        Task<string> Delete(long id);
+        Task Create(UserDTO user);
+        Task<UsersInfoDTO> GetByID(long id);
+        Task<IEnumerable<UsersInfoDTO>> GetAll();
+        Task Update(UserDTO user);
+        Task Delete(long id);
     }
 }

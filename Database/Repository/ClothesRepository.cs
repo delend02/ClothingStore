@@ -1,4 +1,6 @@
-﻿namespace СlothingStore.API.Database.Repository
+﻿using СlothingStore.API.Models;
+
+namespace СlothingStore.API.Database.Repository
 {
     public class ClothesRepository : IClothesRepository
     {
@@ -8,7 +10,6 @@
         {
             connectionDB = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
-
 
         public Task<Clothes> Create(Clothes clothes)
         {

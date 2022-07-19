@@ -11,7 +11,6 @@ namespace СlothingStore.API.Database.Repository
             connectionDB = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
-
         public Task<Clothes> Create(Clothes clothes)
         {
             throw new NotImplementedException();

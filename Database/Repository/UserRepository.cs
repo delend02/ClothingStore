@@ -18,16 +18,22 @@ namespace СlothingStore.API.Database.Repository
             using IDbConnection connection = new NpgsqlConnection(connectionDB);
             var sqlQuery = @"INSERT INTO public.users(
                             nickname, login, password, status)
-	                        VALUES('@Nickname', '@Login', '@Password', '0');";
+	                        VALUES(@Nickname, @Login, @Password, 0);";
             await connection.ExecuteAsync(sqlQuery,
                 new { user.Nickname,
                       user.Login,
                       user.Password });
         }
 
-        public Task Delete(long id)
+        public async Task Delete(long id)
         {
-            throw new NotImplementedException();
+            using IDbConnection connection = new NpgsqlConnection(connectionDB);
+            var sqlQuery = @"DELETE FROM users WHERE id = @id";
+            await connection.ExecuteAsync(sqlQuery,
+                new
+                {
+                    id
+                });
         }
 
         public async Task<IEnumerable<UsersInfoDTO>> GetAll()
@@ -56,9 +62,20 @@ namespace СlothingStore.API.Database.Repository
             return result;
         }
 
-        public Task Update(UserDTO user)
+        public async Task Update(UserDTO user)
         {
-            throw new NotImplementedException();
+            using IDbConnection connection = new NpgsqlConnection(connectionDB);
+            var sqlQuery = @"UPDATE public.users
+	                        SET nickname = @nickname, login = @login, password = @password
+	                        WHERE id = @id;";
+            await connection.ExecuteAsync(sqlQuery,
+                new
+                {
+                    user.Nickname,
+                    user.Login,
+                    user.Password,
+                    user.ID
+                });
         }
     }
 }
